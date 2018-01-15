@@ -55,9 +55,6 @@ public class TokenThreadUtil implements Runnable {
         String Url = String.format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",appId,appSecret);
         JSONObject json = HttpUtil.httpsRequest(Url, "GET", null); 
         SysAccessTokenCustom newToken = new SysAccessTokenCustom();
-        newToken.setAccess_token(json.getString("access_token"));
-        newToken.setExpires_in(json.getInt("expires_in"));
-        newToken.setAccess_token_time(new Date());
         Properties prop = new Properties();// 属性集合对象 
         if(System.getProperties().getProperty("os.name").toLowerCase().startsWith("win"))
         	path = path.substring(1);

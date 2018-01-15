@@ -27,11 +27,6 @@ import com.util.wxpay.XMLUtil;
 
 @WebServlet("/ws/system/callBackPay")
 public class CallBackPay extends HttpServlet {
-	@Autowired
-	private SystemService systemService;
-
-	@Autowired
-	private ShopService shopService;
 	/**
 	 * 
 	 */

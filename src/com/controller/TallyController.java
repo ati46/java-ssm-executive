@@ -7,8 +7,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import com.po.custom.ResponseMessageCustom;
+import com.po.vo.SysCommodityInfoResponseVo;
 
 /**
  * 理货控制器

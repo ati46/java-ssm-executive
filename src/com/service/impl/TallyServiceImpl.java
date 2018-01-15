@@ -8,6 +8,7 @@ import com.mapper.custom.SysMacMapperCustom;
 import com.mapper.custom.SysMaintenanceMapperCustom;
 import com.po.custom.SysMacCustom;
 import com.po.custom.SysMaintenanceCustom;
+import com.po.vo.SysCommodityInfoResponseVo;
 import com.service.TallyService;
 
 public class TallyServiceImpl implements TallyService{
@@ -27,8 +28,8 @@ public class TallyServiceImpl implements TallyService{
 
 	@Override
 	public List<SysCommodityInfoResponseVo> getCommodityInfoList() throws Exception {
-		List<SysCommodityInfoResponseVo> list = sysCommodityMapperCustom.getCommodityInfoList();
-		return list;
+		
+		return null;
 	}
 
 	@Override
