@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.celix.wine.mapper.SysMacMapper">
+  <resultMap id="BaseResultMap" type="com.celix.wine.po.SysMac">
+    <id column="mac_id" jdbcType="INTEGER" property="mac_id" />
+    <result column="mac_code" jdbcType="VARCHAR" property="mac_code" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mac_id, mac_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_mac
+    where mac_id = #{mac_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_mac
+    where mac_id = #{mac_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.celix.wine.po.SysMac">
+    insert into sys_mac (mac_id, mac_code)
+    values (#{mac_id,jdbcType=INTEGER}, #{mac_code,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.celix.wine.po.SysMac">
+    insert into sys_mac
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mac_id != null">
+        mac_id,
+      </if>
+      <if test="mac_code != null">
+        mac_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mac_id != null">
+        #{mac_id,jdbcType=INTEGER},
+      </if>
+      <if test="mac_code != null">
+        #{mac_code,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.celix.wine.po.SysMac">
+    update sys_mac
+    <set>
+      <if test="mac_code != null">
+        mac_code = #{mac_code,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mac_id = #{mac_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.celix.wine.po.SysMac">
+    update sys_mac
+    set mac_code = #{mac_code,jdbcType=VARCHAR}
+    where mac_id = #{mac_id,jdbcType=INTEGER}
+  </update>
+</mapper>

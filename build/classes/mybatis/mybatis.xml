@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 全局的配置参数，需要时再定义 -->
+	<!-- 这里需要开启延迟加载，如果不需要开启，一般不需要配置settings -->
+	<settings>
+		<!-- 开启延迟加载，默认是不开启的 -->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<!-- 开启延迟加载后，需要关闭积极加载，如果不关闭每个属性都会按需加载 -->
+		<setting name="aggressiveLazyLoading" value="false"/>
+		<!-- 开启二级缓存 默认就是开启的-->
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
+	<!-- 配置别名 -->
+	<typeAliases>
+		<!-- 批量扫描别名 -->
+		<package name="com.celix.wine.po"/>
+		<package name="com.celix.wine.po.custom"/>
+		<package name="com.celix.wine.po.vo"/>
+	</typeAliases>
+</configuration>

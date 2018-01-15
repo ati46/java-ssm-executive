@@ -1,0 +1,67 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	<!-- 组件扫描。扫描controller -->
+	<context:component-scan base-package="com.celix.wine.controller" ></context:component-scan>
+	
+	<!-- 因为配置了RESF 前端控制器 解析 / 路径，会对解析静态资源文件产生影响，在此配置springmvc对静态资源解析 -->
+	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+	
+	<!-- mvc注解映射器 -->
+	<mvc:annotation-driven conversion-service="conversionService">
+		
+	</mvc:annotation-driven>
+	
+	<!-- 自定义参数绑定 -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<!-- 转换器 -->
+		<property name="converters">
+			<list>
+				<!-- 自定义的日期转换器 -->
+				<bean class="com.celix.wine.controller.converter.CustomDateConverter" />
+				<!-- 如果有多个就加多个bean -->
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+	 -->
+	<!-- 全局异常处理器 -->
+	<!-- 只要实现了HandlerExceptionResolver接口的就是全局异常处理器，只能配置一个全局异常处理器，目前使用cxf的全局异常处理 -->
+	<!-- <bean class="com.celix.wine.exception.CustomMVCExceptionResolver" /> -->
+	
+	<!-- 配置全局的拦截器 -->
+	<mvc:interceptors>
+		<!-- 多个拦截器顺序执行 -->
+		<!-- /** 表示 拦截所有的url 包括子路径 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.celix.wine.interceptor.MVCSystemHandlerInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.celix.wine.interceptor.MVCUserHandlerInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- ModelAndView中jsp路径的前缀 -->
+		<property name="prefix" value="/WEB-INF/webpage/"></property>
+		<!-- ModelAndView中jsp路径的后缀 -->
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+</beans>
