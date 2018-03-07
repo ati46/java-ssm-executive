@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 配置别名 -->
 	<typeAliases>
 		<!-- 批量扫描别名 -->
-		<package name="com.celix.wine.po"/>
-		<package name="com.celix.wine.po.custom"/>
-		<package name="com.celix.wine.po.vo"/>
+		<package name="com.po"/>
+		<package name="com.po.custom"/>
+		<package name="com.po.vo"/>
 	</typeAliases>
 </configuration>
