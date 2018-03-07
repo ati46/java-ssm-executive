@@ -12,7 +12,7 @@
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	
 	<!-- 组件扫描。扫描controller -->
-	<context:component-scan base-package="com.celix.wine.controller" ></context:component-scan>
+	<context:component-scan base-package="com.controller" ></context:component-scan>
 	
 	<!-- 因为配置了RESF 前端控制器 解析 / 路径，会对解析静态资源文件产生影响，在此配置springmvc对静态资源解析 -->
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
@@ -28,7 +28,7 @@
 		<property name="converters">
 			<list>
 				<!-- 自定义的日期转换器 -->
-				<bean class="com.celix.wine.controller.converter.CustomDateConverter" />
+				<bean class="com.controller.converter.CustomDateConverter" />
 				<!-- 如果有多个就加多个bean -->
 			</list>
 		</property>
@@ -48,11 +48,11 @@
 		<!-- /** 表示 拦截所有的url 包括子路径 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
-			<bean class="com.celix.wine.interceptor.MVCSystemHandlerInterceptor" />
+			<bean class="com.interceptor.MVCSystemHandlerInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
-			<bean class="com.celix.wine.interceptor.MVCUserHandlerInterceptor" />
+			<bean class="com.interceptor.MVCUserHandlerInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
