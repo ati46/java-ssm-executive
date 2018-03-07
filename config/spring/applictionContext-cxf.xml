@@ -17,7 +17,7 @@
         http://cxf.apache.org/core 
         http://cxf.apache.org/schemas/core.xsd">
      
-     <context:component-scan base-package="com.celix.wine.controller" />
+     <context:component-scan base-package="com.controller" />
      <!-- 引入CXF Bean定义如下 -->  
 	<import resource="classpath:META-INF/cxf/cxf.xml"/>  
 	<!--已经可以不使用此项  
@@ -30,7 +30,7 @@
    		
        <jaxrs:providers>  
            <ref bean="jacksonProvider" />  
-           <bean class="com.celix.wine.exception.CustomCXFFaultMapper"/>
+           <bean class="com.exception.CustomCXFFaultMapper"/>
        </jaxrs:providers>  
        <jaxrs:extensionMappings>  
            <entry key="json" value="application/json" />  
@@ -45,7 +45,7 @@
  
        <jaxrs:inInterceptors>  
            <bean class="org.apache.cxf.interceptor.LoggingInInterceptor"></bean>  
-           <bean class="com.celix.wine.interceptor.CXFTokenHandlerInterceptor"></bean>
+           <bean class="com.interceptor.CXFTokenHandlerInterceptor"></bean>
        </jaxrs:inInterceptors>  
        <jaxrs:outInterceptors>  
            <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"></bean>  
