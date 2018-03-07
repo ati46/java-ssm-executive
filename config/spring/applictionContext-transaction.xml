@@ -54,6 +54,6 @@
      </tx:advice>
      <!-- aop -->
      <aop:config>
-     	<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.celix.wine.service.impl.*.*(..))"/>
+     	<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.service.impl.*.*(..))"/>
      </aop:config>
 </beans>
